@@ -1,0 +1,10 @@
+<launch>
+  
+  <param name="motor_controller" value="$(optenv MOTOR_CONTROLLER adafruit)" />
+  <param name="i2c_bus" type="int" value="$(optenv I2C_BUS 1)" />
+  <param name="max_pwm" type="float" value="$(optenv MAX_PWM 115.0)" />
+  
+  <node name="move" pkg="jetbot_base" type="move" />
+  <node name="circle" pkg="jetbot_move" type="circle" />
+  
+</launch>
