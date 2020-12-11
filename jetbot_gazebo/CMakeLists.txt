@@ -52,6 +52,11 @@ install(DIRECTORY launch worlds models
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
+# Add your custom nodes here. 
+catkin_install_python(PROGRAMS 
+  nodes/cmd_converter.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ################################################################################
 # Test

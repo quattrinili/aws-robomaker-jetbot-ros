@@ -55,12 +55,9 @@ include_directories(/usr/include/gstreamer-1.0 /usr/include/glib-2.0 /usr/includ
 ################################################################################
 # Add your custom nodes here. 
 catkin_install_python(PROGRAMS 
-  nodes/circle
-  nodes/move
-  nodes/teleop
-  nodes/camera
   nodes/detect
   nodes/dino_finder
+  scripts/run_dino.sh
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -68,13 +65,6 @@ install(DIRECTORY launch
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
-install(DIRECTORY config
-	DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-
-install(DIRECTORY deploymentScripts
-  DESTINATION ${CATKIN_GLOBAL_SHARE_DESTINATION}
-)
 
 ################################################################################
 # Test
