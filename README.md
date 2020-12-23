@@ -52,5 +52,8 @@
     $ sudo apt-get install libopenblas-base libopenmpi-dev python3-smbus
     $ wget https://nvidia.box.com/shared/static/wa34qwrwtk9njtyarwt5nvo6imenfy26.whl -O torch-1.7.0-cp36-cp36m-linux_aarch64.whl
     $ sudo pip3 install numpy torch-1.7.0-cp36-cp36m-linux_aarch64.whl
-    # stop the display jetbot docker container, reboot and check if the systemd service is running
+    # stop the Nvidia jetbot docker containers (this will stop the Jupyter service as well), reboot and confirmed the OLED display shows battery voltage now
+    cd ~/jetbot/docker/
+    ./disable.sh
+    sudo reboot
     ```
