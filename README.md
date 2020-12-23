@@ -5,8 +5,8 @@
 
 #### First boot 
 1. Download and flash SD card with the 2GB Jetson Nano image from Nvidia: https://jetbot.org/master/software_setup/sd_card.html
-2. Plug SD card in, connect keyboard, HDMI and power and power on
-3. Login to console (default username/password is **jetbot**/**jetbot**)
+2. Insert flashed SD card into the robot's card slot, connect a keyboard, HDMI cable and charger (or batteries) and power on the robot
+3. Wait for the robot to boot and login to the console (default username/password is **jetbot**/**jetbot**)
 4. Configure Jetbot to connect to your Wifi network:
     ```
     $ sudo nmcli device wifi connect <SSID> password <PASSWORD>
@@ -14,7 +14,7 @@
 5. Make a note of your Jetbot's IP address from OLED display
 
 #### Install dependencies and configure Jetson
-1. SSH into your Jetbot with IP address from above and install the following packages:
+1. SSH into your Jetbot with IP address from previous step and install the following packages:
     ```
     $ sudo apt-get install python3-pip python3-setuptools rsync
     ```
@@ -26,15 +26,12 @@
     $ sudo python3 setup.py install
     $ rsync -r ~/waveshare_jetbot/notebooks ~/Notebooks
     ```
-3. Configure Jetson Nano power mode
+3. Configure and confirm Jetson Nano power mode
     ```
     $ sudo nvpmodel -m1
-    ```
-4. Confirm power mode settings
-    ```
     $ sudo nvpmodel -q
     ```
-5. Build and install custom Waveshare Jetbot stats service (shows battery voltage on OLED display):
+4. Build and install custom Waveshare Jetbot stats service (shows battery voltage on OLED display):
     ```
     $ cd ~/waveshare_jetbot/jetbot/jetbot/utils
     $ python3 create_stats_service.py
@@ -52,7 +49,7 @@
     $ sudo apt-get install libopenblas-base libopenmpi-dev python3-smbus
     $ wget https://nvidia.box.com/shared/static/wa34qwrwtk9njtyarwt5nvo6imenfy26.whl -O torch-1.7.0-cp36-cp36m-linux_aarch64.whl
     $ sudo pip3 install numpy torch-1.7.0-cp36-cp36m-linux_aarch64.whl
-    # stop the Nvidia jetbot docker containers (this will stop the Jupyter service as well), reboot and confirmed the OLED display shows battery voltage now
+    # stop the Nvidia jetbot docker containers (this will stop the Jupyter service as well), reboot and confirm the OLED display shows battery voltage now
     $ cd ~/jetbot/docker/
     $ ./disable.sh
     $ sudo reboot
