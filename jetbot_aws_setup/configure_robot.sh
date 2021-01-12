@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This script must be copied to the Jetbot and run from a shell terminal. 
+# This script must be copied to the Jetbot and run from a shell terminal with sudo privileges. 
 #
 # The script will download the install the latest ARM64 version of Greengrass onto the robot,
 # configure the robot with Greengrass certificates and start the Greengrass daemon. 
@@ -47,7 +47,25 @@ sudo chown -R ggc_user:ggc_group /greengrass
 # add ggc_user to i2c group
 sudo usermod -a -G i2c ggc_user
 
-# start Greengrass Core
-sudo /greengrass/ggc/core/greengrassd start
+# add a systemd startup script
+sudo cat >>/etc/systemd/system/greengrass.service << EOF
+[Unit]
+Description=Greengrass Daemon
+
+[Service]
+Type=forking
+PIDFile=/var/run/greengrassd.pid
+Restart=on-failure
+ExecStart=/greengrass/ggc/core/greengrassd start
+ExecReload=/greengrass/ggc/core/greengrassd restart
+ExecStop=/greengrass/ggc/core/greengrassd stop
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# enable systemd service and start Greengrass Core
+sudo systemctl enable greengrass.service
+sudo systemctl start greengrass.service
 
 echo "Done setting up the Jetbot!"
