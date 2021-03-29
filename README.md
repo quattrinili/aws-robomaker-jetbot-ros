@@ -33,7 +33,7 @@
     ```
 4. Build and install custom Waveshare Jetbot stats service (shows battery voltage on OLED display):
     ```
-    $ cd ~/waveshare_jetbot/jetbot/jetbot/utils
+    $ cd ~/waveshare_jetbot/jetbot/utils
     $ python3 create_stats_service.py
     $ sudo mv jetbot_stats.service /etc/systemd/system/jetbot_stats.service
     $ sudo systemctl enable jetbot_stats
@@ -44,11 +44,11 @@
     $ sudo pip3 install traitlets pillow ipywidgets
     
     ### Install the pre-built PyTorch pip wheel for Jetpack 4.4
-    ### Box link from forum post here: https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-7-0-now-available/72048/555
+    ### Box link from forum post here: https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-8-0-now-available/72048
     ### check your Jetpack version with: sudo apt-cache show nvidia-jetpack
     $ sudo apt-get install libopenblas-base libopenmpi-dev python3-smbus
-    $ wget https://nvidia.box.com/shared/static/wa34qwrwtk9njtyarwt5nvo6imenfy26.whl -O torch-1.7.0-cp36-cp36m-linux_aarch64.whl
-    $ sudo pip3 install numpy torch-1.7.0-cp36-cp36m-linux_aarch64.whl
+    $ wget https://nvidia.box.com/shared/static/p57jwntv436lfrd78inwl7iml6p13fzh.whl -O torch-1.8.0-cp36-cp36m-linux_aarch64.whl
+    $ sudo pip3 install torch-1.8.0-cp36-cp36m-linux_aarch64.whl
     # stop the Nvidia jetbot docker containers (this will stop the Jupyter service as well), reboot and confirm the OLED display shows battery voltage now
     $ cd ~/jetbot/docker/
     $ ./disable.sh
