@@ -1,12 +1,5 @@
 #!/usr/bin/python3
 
-# MIT License
-# Copyright (c) 2019 JetsonHacks
-# See license
-# Using a CSI camera (such as the Raspberry Pi Version 2) connected to a
-# NVIDIA Jetson Nano Developer Kit using OpenCV
-# Drivers for the camera and OpenCV are included in the base image
-
 import logging
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
@@ -14,14 +7,8 @@ from sensor_msgs.msg import Image
 import rclpy
 from rclpy.node import Node
 import time
-import signalcd 
+import signal
 import json
-
-# gstreamer_pipeline returns a GStreamer pipeline for capturing from the CSI camera
-# Defaults to 1280x720 @ 60fps
-# Flip the image by setting the flip_method (most common values: 0 and 2)
-# display_width and display_height determine the size of the window on the screen
-
 
 class JetbotCamera(Node):
     
@@ -30,7 +17,6 @@ class JetbotCamera(Node):
         self.pub = self.create_publisher(Image, 'jetbot_camera/raw', 10)
         timer_period = 1.0
         pipeline = self.gstreamer_pipeline(flip_method=0)
-        cd 
         self.cap = cv2.VideoCapture(pipeline, cv2.CAP_GSTREAMER)
         if self.cap.isOpened():
             self.tmr = self.create_timer(timer_period, self.timer_callback)

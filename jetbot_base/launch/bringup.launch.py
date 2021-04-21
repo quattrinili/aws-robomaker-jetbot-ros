@@ -27,6 +27,7 @@ import launch
 import launch.actions
 import launch.substitutions
 import launch_ros.actions
+from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     return launch.LaunchDescription([
@@ -37,6 +38,9 @@ def generate_launch_description():
         launch_ros.actions.Node(
              package='jetbot_base', executable='jetbot_camera', output='screen',
              name=[launch.substitutions.LaunchConfiguration('node_prefix'), 'jetbot_camera']),
+        launch.actions.IncludeLaunchDescription(
+            launch.launch_description_sources.PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory('ydlidar_ros2_driver'), 'launch', 'ydlidar_launch.py'))),
         launch_ros.actions.Node(
              package='jetbot_base', executable='jetbot_motor_controller', output='screen',
              parameters=[
