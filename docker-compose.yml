@@ -18,7 +18,7 @@ services:
     image: jetbot-ros:robot
     command: . /opt/ros/foxy/setup.sh && \
              . /opt/jetbot_ros/setup.sh && \
-             ros2 launch jetbot_base bringup.launch.py
+             ros2 launch ${ROBOT_ROS_PKG} ${ROBOT_ROS_LAUNCH}.launch.py
     devices:
       - "/dev/ttyUSB0:/dev/ttyUSB0"
       - "/dev/i2c-1:/dev/ic2-1"
@@ -29,7 +29,9 @@ services:
   simulation_app:
     container_name: simulation
     image: jetbot-ros:simulation
-    command: echo "hello"
+    command: . /opt/ros/foxy/setup.sh && \
+             . /opt/jetbot_simulation/setup.sh && \
+             ros2 launch ${SIM_ROS_PKG} ${SIM_ROS_LAUNCH}.launch.py
     volumes:
         - /tmp/.X11-unix:/tmp/.X11-unix:rw
         - $HOME/.Xauthority:/root/.Xauthority
