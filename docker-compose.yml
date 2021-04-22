@@ -1,22 +1,37 @@
 version: "2.4"
 services: 
-  robot_image:
+  jetbot_ros2_robot_image:
     build: 
         context: ./
         dockerfile: Dockerfile.robot
-    image: jetbot-ros:robot
-  sim_image:
+        network: host
+    image: jetbot-ros2:robot
+  jetbot_ros2_sim_image:
     build:
         context: ./
         dockerfile: Dockerfile.simulation
-    image: jetbot-ros:simulation
+        network: host
+    image: jetbot-ros2:simulation
     
-  talker:
+  robot_app:
     container_name: robot
     image: jetbot-ros:robot
-    command: echo "hello"
+    command: . /opt/ros/foxy/setup.sh && \
+             . /opt/jetbot_ros/setup.sh && \
+             ros2 launch jetbot_base bringup.launch.py
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+      - "/dev/i2c-1:/dev/ic2-1"
+      - "/dev/video0:/dev/video0"
+    volumes:
+      - /tmp/argus_socket:/tmp/argus_socket
 
-  listener:
+  simulation_app:
     container_name: simulation
     image: jetbot-ros:simulation
     command: echo "hello"
+    volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix:rw
+        - $HOME/.Xauthority:/root/.Xauthority
+    environment:
+        DISPLAY: $DISPLAY
