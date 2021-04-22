@@ -1,0 +1,22 @@
+version: "2.4"
+services: 
+  robot_image:
+    build: 
+        context: ./
+        dockerfile: Dockerfile.robot
+    image: jetbot-ros:robot
+  sim_image:
+    build:
+        context: ./
+        dockerfile: Dockerfile.simulation
+    image: jetbot-ros:simulation
+    
+  talker:
+    container_name: robot
+    image: jetbot-ros:robot
+    command: echo "hello"
+
+  listener:
+    container_name: simulation
+    image: jetbot-ros:simulation
+    command: echo "hello"
