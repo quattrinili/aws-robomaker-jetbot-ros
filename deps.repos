@@ -9,5 +9,5 @@ repositories:
     version: ros2
   ydlidar_ros2_driver:
     type: git
-    url: https://github.com/YDLIDAR/ydlidar_ros2_driver.git
-    version: master
+    url: https://github.com/jerwallace/ydlidar_ros2_driver.git
+    version: foxy
