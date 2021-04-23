@@ -19,10 +19,12 @@ services:
     command: ros2 launch ${ROBOT_ROS_PKG} ${ROBOT_ROS_LAUNCH}.launch.py
     devices:
       - "/dev/ttyUSB0:/dev/ttyUSB0"
-      - "/dev/i2c-1:/dev/ic2-1"
+      - "/dev/i2c-1:/dev/i2c-1"
       - "/dev/video0:/dev/video0"
     volumes:
       - /tmp/argus_socket:/tmp/argus_socket
+    environment:
+      - DEFAULT_SPEED=0.3
 
   simulation_app:
     container_name: simulation
