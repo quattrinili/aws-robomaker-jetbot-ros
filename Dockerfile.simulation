@@ -1,12 +1,21 @@
 ARG ROS_DISTRO=foxy
 FROM ros:${ROS_DISTRO}
 
+RUN apt-get update && rosdep update && rosdep fix-permissions
+
+RUN apt-get install -y python3-pip python3-apt
+
+RUN apt-get install ros-foxy-example-interfaces ros-foxy-navigation2 ros-foxy-vision-opencv -y
+
+RUN apt-get install -y ros-foxy-gazebo-ros ros-foxy-gazebo-plugins ros-foxy-gazebo-ros-pkgs gazebo11 -y
+
 ADD simulation_ws /root/ros2_ws
 WORKDIR /root/ros2_ws/
 RUN apt-get update && \ 
     . /opt/ros/foxy/setup.sh && \
     rosdep update && rosdep fix-permissions
+
 RUN rosdep install --from src -i -y
 RUN mkdir /opt/jetbot_simulation/
-RUN apt update ** apt install ros-foxy-gazebo-plugins
-RUN . /opt/ros/foxy/setup.sh && colcon build --install-base /opt/jetbot_ros/
+
+RUN . /opt/ros/foxy/setup.sh && colcon build --install-base /opt/jetbot_simulation/
