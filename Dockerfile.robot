@@ -31,4 +31,4 @@ ENV ROS_DISTRO foxy
 ENV APP_NAME jetbot_ros
 ADD app_entrypoint.sh /app_entrypoint.sh
 RUN chmod +x /app_entrypoint.sh
-ENTRYPOINT ["./app_entrypoint.sh]
+ENTRYPOINT ["./app_entrypoint.sh"]
