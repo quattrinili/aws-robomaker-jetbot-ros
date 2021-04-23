@@ -17,6 +17,8 @@ RUN cd YDLidar-SDK/build && \
 
 RUN apt-get install ros-foxy-rosauth python3-tornado python3-twisted python3-pil python3-bson -y
 
+RUN apt-get install python3-opencv
+
 ADD robot_ws/ /root/ros2_ws/
 WORKDIR /root/ros2_ws/
 
@@ -25,3 +27,8 @@ RUN mkdir /opt/jetbot_ros/
 RUN . /opt/ros/foxy/setup.sh && colcon build --install-base /opt/jetbot_ros/
 
 WORKDIR /
+ENV ROS_DISTRO foxy
+ENV APP_NAME jetbot_ros
+ADD app_entrypoint.sh /app_entrypoint.sh
+RUN chmod +x /app_entrypoint.sh
+ENTRYPOINT ["./app_entrypoint.sh]
