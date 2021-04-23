@@ -15,7 +15,7 @@ services:
     
   robot_app:
     container_name: robot
-    image: jetbot-ros:robot
+    image: jetbot-ros2:robot
     command: . /opt/ros/foxy/setup.sh && \
              . /opt/jetbot_ros/setup.sh && \
              ros2 launch ${ROBOT_ROS_PKG} ${ROBOT_ROS_LAUNCH}.launch.py
@@ -28,7 +28,7 @@ services:
 
   simulation_app:
     container_name: simulation
-    image: jetbot-ros:simulation
+    image: jetbot-ros2:simulation
     command: . /opt/ros/foxy/setup.sh && \
              . /opt/jetbot_simulation/setup.sh && \
              ros2 launch ${SIM_ROS_PKG} ${SIM_ROS_LAUNCH}.launch.py
