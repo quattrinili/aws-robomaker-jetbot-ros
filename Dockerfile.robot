@@ -15,14 +15,13 @@ RUN cd YDLidar-SDK/build && \
     make && \
     make install
 
-RUN apt-get install ros-foxy-rosauth python3-tornado -y
+RUN apt-get install ros-foxy-rosauth python3-tornado python3-twisted python3-pil python3-bson -y
 
 ADD robot_ws/ /root/ros2_ws/
 WORKDIR /root/ros2_ws/
-RUN . /opt/ros/foxy/setup.sh && rosdep update && rosdep fix-permissions
 
 RUN mkdir src/deps && vcs import src/deps < deps.repos
-RUN rosdep install --from src -i -y
 RUN mkdir /opt/jetbot_ros/
 RUN . /opt/ros/foxy/setup.sh && colcon build --install-base /opt/jetbot_ros/
+
 WORKDIR /
