@@ -6,12 +6,6 @@ services:
         dockerfile: Dockerfile.robot
         network: host
     image: jetbot-ros2:robot
-  jetbot_ros2_sim_image:
-    build:
-        context: ./
-        dockerfile: Dockerfile.simulation
-        network: host
-    image: jetbot-ros2:simulation
     
   robot_app:
     container_name: robot
@@ -25,13 +19,3 @@ services:
       - /tmp/argus_socket:/tmp/argus_socket
     environment:
       - DEFAULT_SPEED=0.3
-
-  simulation_app:
-    container_name: simulation
-    image: jetbot-ros2:simulation
-    command: ros2 launch ${SIM_ROS_PKG} ${SIM_ROS_LAUNCH}.launch.py
-    volumes:
-        - /tmp/.X11-unix:/tmp/.X11-unix:rw
-        - $HOME/.Xauthority:/root/.Xauthority
-    environment:
-        DISPLAY: $DISPLAY
