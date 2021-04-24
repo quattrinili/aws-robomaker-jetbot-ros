@@ -34,6 +34,9 @@ def generate_launch_description():
             'node_prefix',
             default_value=[os.environ.get('ROBOT_ID', 'robo1'), '_'],
             description='Prefix for node names'),
+        launch.actions.IncludeLaunchDescription(
+            launch.launch_description_sources.PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory('jetbot_base'), 'launch', 'bringup.launch.py'))),
         launch_ros.actions.Node(
              package='jetbot_move', executable='circle', output='screen',
              parameters=[
