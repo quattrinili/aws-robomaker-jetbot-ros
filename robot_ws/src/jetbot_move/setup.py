@@ -34,7 +34,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'circle = jetbot_move.topics.circle:main',
+            'circle = jetbot_move.circle:main',
+            'dance = jetbot_move.dance:main'
         ],
     },
 )

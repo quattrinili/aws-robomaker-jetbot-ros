@@ -15,6 +15,7 @@ class JetBotMotorController(Node):
         self.declare_parameter('i2c_bus')
         self.declare_parameter('default_speed')
         self.declare_parameter('max_pwm')
+        self.declare_parameter('type', 'waveshare')
         self.start_subscriptions();
         self.set_speed(self.get_parameter('default_speed')._value)
         self.motor_driver = Adafruit_MotorHAT(i2c_bus=int(self.get_parameter('i2c_bus')._value))
@@ -36,23 +37,25 @@ class JetBotMotorController(Node):
     
     # velocity, twist commands (Twist)
     def on_cmd_vel(self, msg):
-        x = msg.linear.x
-        y = msg.angular.z/10
-         
+
+        LIN_FACTOR = 30
+        ANG_FACTOR = 15
+
+        lin_vel = msg.linear.x / LIN_FACTOR
+        ang_vel = msg.angular.z / ANG_FACTOR
+
+        wheel_speed_l = (2*vel-wheelbase*yaw_rate) / (2*wheel_radius)
+        wheel_speed_r = (2*vel+wheelbase*yaw_rate) / (2*wheel_radius)
         if x>0 and y<0: #backward right
-            self.get_logger().info('backward right (left, right)=(%s,%s)' % ((abs(y)+0.1), (0.2+y+0.1)))
             self.set_pwm(self.motor_left_ID, (abs(y)+0.1))
             self.set_pwm(self.motor_right_ID, (0.2+y+0.1))
         elif x>0 and y>0: #backward left
-            self.get_logger().info('backward left (left, right)=(%s,%s)' % ((0.2-y+0.1), (y+0.1)))
             self.set_pwm(self.motor_left_ID, (0.2-y+0.1))
             self.set_pwm(self.motor_right_ID, (y+0.1))
         elif x<0 and y>0: #forward left
-            self.get_logger().info('forward left (left, right)=(%s,%s)' % ((-(0.2-y)-0.1), -(y+0.1)))
             self.set_pwm(self.motor_left_ID, (-(0.2-y)-0.1))
             self.set_pwm(self.motor_right_ID, -(y+0.1))
         elif x<0 and y<0: #forward right
-            self.get_logger().info('forward right (left, right)=(%s,%s)' % (y-0.1, (-(0.2+y)-0.1)))
             self.set_pwm(self.motor_left_ID, y-0.1)
             self.set_pwm(self.motor_right_ID, (-(0.2+y)-0.1))
         else:

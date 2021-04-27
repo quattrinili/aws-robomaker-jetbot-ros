@@ -7,12 +7,13 @@ setup(
     name=package_name,
     version='0.14.0',
     packages=find_packages(exclude=['test']),
+    package_dir={'': ''},
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch',
-         ['launch/dance_world.launch.py']),
+         ['launch/spawn_jetbot.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -34,7 +35,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'cmd_converter = jetbot_gazebo.cmd_converter:main',
+            'spawn_jetbot = jetbot_gazebo.spawn_jetbot:main' 
         ],
     },
 )

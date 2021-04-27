@@ -1,0 +1,33 @@
+version: "2.4"
+services: 
+  jetbot_ros2_robot_image:
+    build: 
+        context: ./
+        dockerfile: Dockerfile.robot
+        network: host
+    image: jetbot-ros2:robot
+    
+  robot:
+    container_name: robot_2
+    image: jetbot-ros2:robot
+    command: ros2 launch ${ROBOT_ROS_PKG} ${ROBOT_ROS_LAUNCH}.launch.py
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+      - "/dev/i2c-1:/dev/i2c-1"
+      - "/dev/video0:/dev/video0"
+    volumes:
+      - /tmp/argus_socket:/tmp/argus_socket
+    environment:
+      - DEFAULT_SPEED=0.3
+      
+  stats_collector:
+    container_name: stats_collector
+    image: jetbot-ros2:robot
+    command: ros2 launch stats_collector stats_collector.launch.py
+        
+  rosbridge:
+    container_name: rosbridge
+    image: jetbot-ros2:robot
+    command: ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+    expose:
+        - "9090"

@@ -12,7 +12,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch',
-         ['launch/bringup.launch.py', 'launch/bringup-nocamera.launch.py']),
+         ['launch/jetbot.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -28,7 +28,7 @@ setup(
         'Topic :: Software Development',
     ],
     description=(
-        'Motor controllers for the jetbot '
+        'Move operations for the Jetbot'
     ),
     license='Apache License, Version 2.0',
     tests_require=['pytest'],
@@ -36,6 +36,7 @@ setup(
         'console_scripts': [
             'jetbot_motor_controller = jetbot_base.jetbot_motor_controller:main',
             'jetbot_camera = jetbot_base.jetbot_camera:main',
+            'jetbot_oled_display = jetbot_base.jetbot_oled_display:main'
         ],
     },
 )

@@ -1,13 +1,13 @@
-<?xml version="1.0" ?>
-<sdf version="1.6">
-<model name="DanceFloor">
+<?xml version="1.0"?>
+<sdf version="1.4">
+<model name="dance_floor">
   <static>true</static>
     <link name="link">
       <collision name="collision">
         <geometry>
           <plane>
             <normal>0 0 1</normal>
-            <size>1 1</size>
+            <size>100 100</size>
           </plane>
         </geometry>
         <surface>
@@ -37,3 +37,4 @@
     </link>
   </model>
 </sdf>
+

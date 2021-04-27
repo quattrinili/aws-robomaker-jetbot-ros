@@ -16,10 +16,11 @@ WORKDIR /root/ros2_ws/
 
 RUN mkdir /opt/jetbot_simulation/
 RUN . /opt/ros/foxy/setup.sh && colcon build --install-base /opt/jetbot_simulation/
+RUN apt-get install xauth
 
 WORKDIR /
 ENV ROS_DISTRO foxy
 ENV APP_NAME jetbot_simulation
 ADD app_entrypoint.sh /app_entrypoint.sh
 RUN chmod +x /app_entrypoint.sh
-ENTRYPOINT ["./app_entrypoint.sh]
+ENTRYPOINT ["./app_entrypoint.sh"]
