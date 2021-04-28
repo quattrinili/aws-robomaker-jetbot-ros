@@ -11,3 +11,7 @@ repositories:
     type: git
     url: https://github.com/jerwallace/ydlidar_ros2_driver.git
     version: foxy
+  vision_opencv:
+    type: git
+    url: https://github.com/ros-perception/vision_opencv.git
+    version: ros2

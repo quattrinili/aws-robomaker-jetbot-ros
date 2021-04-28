@@ -24,6 +24,8 @@ I2C_BUS = os.environ.get('I2C_BUS', '1')
 ROBOT_ID = os.environ.get('ROBOT_ID', 'robo1')
 CAMERA = os.environ.get('CAMERA', 'false')
 LIDAR = os.environ.get('LIDAR', 'true')
+WLAN0_IP = os.environ.get('WLAN0_IP', 'No WLAN0 IP')
+ETH0_IP = os.environ.get('ETH0_IP', 'No ETH0 IP')
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -49,6 +51,10 @@ def generate_launch_description():
              name=[LaunchConfiguration('node_prefix'), 'jetbot_motor_controller']),
         Node(
              package='jetbot_base', executable='jetbot_oled_display', output='screen',
+             parameters=[
+                {"eth0_ip": ETH0_IP},
+                {"wlan0_ip": WLAN0_IP}
+             ],
              name=[LaunchConfiguration('node_prefix'), 'jetbot_oled_display']),
     ]
 

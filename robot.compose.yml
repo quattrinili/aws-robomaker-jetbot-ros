@@ -1,14 +1,24 @@
-version: "2.4"
+version: "3"
 services: 
-  jetbot_ros2_robot_image:
+
+  foxy:
+    build: 
+        context: ./
+        dockerfile: Dockerfile.l4t.ros.foxy
+    image: ros-foxy-l4t-base:r32.4.4
+
+  jetbot:
     build: 
         context: ./
         dockerfile: Dockerfile.robot
-        network: host
     image: jetbot-ros2:robot
     
-  robot:
-    container_name: robot_2
+  jetbot_app:
+    container_name: robot
+    environment:
+      - "ROS_DOMAIN_ID=0"
+      - "WLAN0_IP=${WLAN0_IP}"
+      - "ETH0_IP=${ETH0_IP}"
     image: jetbot-ros2:robot
     command: ros2 launch ${ROBOT_ROS_PKG} ${ROBOT_ROS_LAUNCH}.launch.py
     devices:
@@ -19,15 +29,25 @@ services:
       - /tmp/argus_socket:/tmp/argus_socket
     environment:
       - DEFAULT_SPEED=0.3
+      - QT_X11_NO_MITSHM=1
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - CAMERA=true
       
   stats_collector:
+    environment:
+      - "ROS_DOMAIN_ID=0"
     container_name: stats_collector
     image: jetbot-ros2:robot
     command: ros2 launch stats_collector stats_collector.launch.py
-        
+      
   rosbridge:
+    environment:
+      - "ROS_DOMAIN_ID=0"
     container_name: rosbridge
     image: jetbot-ros2:robot
     command: ros2 launch rosbridge_server rosbridge_websocket_launch.xml
-    expose:
-        - "9090"
+    ports:
+      - target: 9090
+        published: 9090
+        protocol: tcp
+        mode: host
