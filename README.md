@@ -1,5 +1,7 @@
 ## NVidia Jetbot - ROS2 Sample Application
 
+**NOTE: This repo is under active development and should be considered unstable. However, feel free to use any assets as reference materials.**
+
 ### Nodes
 
 jetbot_base
