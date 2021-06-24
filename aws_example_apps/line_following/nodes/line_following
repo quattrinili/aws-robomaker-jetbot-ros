@@ -27,7 +27,7 @@ CENTROID_LOCATION_RATIO = 0.5 # ratio for width to determine where the centroid 
 # Constants for velocity.
 LINEAR_VELOCITY = 0.2 # m/s
 P_GAIN = 0.01 # Proportional gain for the P controller.
-DEBUG = False
+DEBUG = False # Flag to enable publishing of images with centroid marker.
 
 class LineFollowing():
     def __init__(self, linear_velocity=LINEAR_VELOCITY, 
@@ -84,11 +84,11 @@ class LineFollowing():
             except Queue.Full:
                 pass
 
-        if self.debug:
-            # If debug, publish image with marker corresponding to the centroid.
-            cv2.circle(image, (cx, cy), 20, (0, 0, 255), -1)
-            image_w_marker_msg = self.bridge.cv2_to_imgmsg(image, "bgr8")
-            self.image_pub.publish(image_w_marker_msg)
+            if self.debug:
+                # If debug, publish image with marker corresponding to the centroid.
+                cv2.circle(image, (centroid_x, centroid_y), 20, (0, 0, 255), -1)
+                image_w_marker_msg = self.bridge.cv2_to_imgmsg(image, "bgr8")
+                self.image_pub.publish(image_w_marker_msg)
 
     def spin(self):
         """Control the robot based on the centroid."""
