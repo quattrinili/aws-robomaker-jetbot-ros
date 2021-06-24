@@ -28,6 +28,6 @@
     args="jetbot_diff_controller"/>
 
   <!-- Rotate the robot on launch -->
-  <node pkg="jetbot_move" type="teleop.py" name="teleop" output="screen"/>
+  <node pkg="jetbot_move" type="teleop" name="teleop" output="screen"/>
   
 </launch>

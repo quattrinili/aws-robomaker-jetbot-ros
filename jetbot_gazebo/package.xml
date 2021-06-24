@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>jetbot_sim_app</name>
+  <name>jetbot_gazebo</name>
   <version>1.0.0</version>
   <description>
     A custom AWS RoboMaker simulation package with a JetBot in an empty Gazebo world.
