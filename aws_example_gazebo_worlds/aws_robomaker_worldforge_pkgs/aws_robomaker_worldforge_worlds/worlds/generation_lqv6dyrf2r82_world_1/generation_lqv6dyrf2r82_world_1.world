@@ -1,0 +1,124 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+	<world name="generation_lqv6dyrf2r82_world_1">
+		<include>
+			<uri>model://sun</uri>
+		</include>
+		<!--Bedroom-->
+		<model name="Headboards_O5d185ed0fce9_lod0_0">
+			<include>
+				<uri>model://Headboards_O5d185ed0fce9_lod0</uri>
+				<pose>1.1522281408309938 -2.6999829530715944 0.0 0.0 0.0 4.71</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="FloorLamps_Oa651b7cbe4d7_lod0_1">
+			<include>
+				<uri>model://FloorLamps_Oa651b7cbe4d7_lod0</uri>
+				<pose>1.9609986871480942 -3.6 0.0 0.0 0.0 4.710000000000001</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="FloorLamps_Oa651b7cbe4d7_lod0_2">
+			<include>
+				<uri>model://FloorLamps_Oa651b7cbe4d7_lod0</uri>
+				<pose>-2.0109986871480943 1.1 0.0 0.0 0.0 1.57</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="Nightstands_O86bb94a2231c_lod0_3">
+			<include>
+				<uri>model://Nightstands_O86bb94a2231c_lod0</uri>
+				<pose>2.0164755135774612 -1.5500121295452118 0.0 0.0 0.0 4.710000000000001</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="HomeOfficeDesks_O593758bd9853_lod0_4">
+			<include>
+				<uri>model://HomeOfficeDesks_O593758bd9853_lod0</uri>
+				<pose>-1.2000000000000002 3.649985903501511 0.0 0.0 0.0 0.0</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="HomeOfficeDeskChairs_Oaed1cbd04270_lod0_5">
+			<include>
+				<uri>model://HomeOfficeDeskChairs_Oaed1cbd04270_lod0</uri>
+				<pose>-1.1816493391990663 2.805955740809441 0.0 0.0 0.0 3.1399999999999997</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="HomeOfficeDeskChairs_Oaed1cbd04270_lod0_6">
+			<include>
+				<uri>model://HomeOfficeDeskChairs_Oaed1cbd04270_lod0</uri>
+				<pose>-1.368350660800934 -2.7559557408094406 0.0 0.0 0.0 0.0</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="FloorLamps_O84057e8e96e3_lod0_7">
+			<include>
+				<uri>model://FloorLamps_O84057e8e96e3_lod0</uri>
+				<pose>0.25005681812763214 3.7318019911646845 0.0 0.0 0.0 0.0</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="Dressers_Od32ea272d9d0_lod0_8">
+			<include>
+				<uri>model://Dressers_Od32ea272d9d0_lod0</uri>
+				<pose>1.9953181147575378 0.6000811815261842 0.0 0.0 0.0 4.71</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="Bookcases_Oe43e7e39f537_lod0_9">
+			<include>
+				<uri>model://Bookcases_Oe43e7e39f537_lod0</uri>
+				<pose>2.100000134110451 3.1 0.0 0.0 0.0 4.71</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="Dressers_Ofd64b14db4b9_lod0_10">
+			<include>
+				<uri>model://Dressers_Ofd64b14db4b9_lod0</uri>
+				<pose>-2.0668693736195567 -1.1000134110450746 0.0 0.0 0.0 1.57</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="HomeOfficeDesks_O19496d17b1b5_lod0_11">
+			<include>
+				<uri>model://HomeOfficeDesks_O19496d17b1b5_lod0</uri>
+				<pose>-1.3458615303039552 -3.6494696080684665 0.0 0.0 0.0 3.14</pose>
+				<static>true</static>
+			</include>
+		</model>
+		<!--Structure models-->
+		<model name="wall_0">
+			<include>
+				<uri>model://generation_lqv6dyrf2r82_world_1/wall_0</uri>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="wall_1">
+			<include>
+				<uri>model://generation_lqv6dyrf2r82_world_1/wall_1</uri>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="wall_2">
+			<include>
+				<uri>model://generation_lqv6dyrf2r82_world_1/wall_2</uri>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="wall_3">
+			<include>
+				<uri>model://generation_lqv6dyrf2r82_world_1/wall_3</uri>
+				<static>true</static>
+			</include>
+		</model>
+		<model name="floor_Bedroom">
+			<include>
+				<uri>model://generation_lqv6dyrf2r82_world_1/floor_Bedroom</uri>
+				<static>true</static>
+			</include>
+		</model>
+	</world>
+</sdf>
