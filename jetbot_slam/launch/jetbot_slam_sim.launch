@@ -1,0 +1,15 @@
+<!-- example of simulation run with SLAM -->
+
+<launch>
+  <!-- Gazebo world loading -->
+  <include file="$(find aws_robomaker_worldforge_worlds)/launch/launch_world.launch" /> 
+
+  <!-- robot spawn -->
+  <include file="$(find jetbot_description)/launch/spawn.launch" />
+
+  <!-- rosbot description -->
+  <include file="$(find jetbot_description)/launch/jetbot_description.launch" />
+
+  <!-- run SLAM -->
+  <include file="$(find jetbot_slam)/launch/jetbot_slam.launch" />
+</launch>
